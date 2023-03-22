@@ -1,0 +1,3 @@
+[submodule "common-gdx-sqlite-win"]
+	path = common-gdx-sqlite-win
+	url = https://github.com/joonthansyle/common-gdx-sqlite-win.git
