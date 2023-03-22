@@ -1,3 +1,16 @@
+/**<p>*********************************************************************************************************************
+ * <h1>AndroidDatabaseManager</h1>
+ * @since 20150926
+ * =====================================================================================================================
+ * DATE      VSN/MOD               BY....
+ * =====================================================================================================================
+ * 20150926  Initial version       @author M Rafay Aleem
+ * 20230323  "String sql" might be subject for SQL Injection, if this will be the case it has to be deprecated.
+ *           This needs to be modified and use other alternatives, such as Prepared Statement, etc.
+ * =====================================================================================================================
+ * INFO, ERRORS AND WARNINGS:
+ *
+ **********************************************************************************************************************</p>*/
 
 package com.badlogic.gdx.sqlite.android;
 
@@ -15,7 +28,7 @@ import com.galaxy.red.hat.common.gdx.sqlite.main.*;
 //import com.badlogic.gdx.sql.DatabaseManager;
 //import com.badlogic.gdx.sql.SQLiteGdxException;
 
-/** @author M Rafay Aleem */
+/**  */
 public class AndroidDatabaseManager implements DatabaseManager {
 
 	private Context context;
