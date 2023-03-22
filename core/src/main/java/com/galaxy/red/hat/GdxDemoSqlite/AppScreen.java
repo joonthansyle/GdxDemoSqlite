@@ -21,6 +21,7 @@ public class AppScreen implements Screen {
 
     @Override
     public void show() {
+        System.out.println("STARTING APP..");
         viewport = new ScreenViewport();
         skin = new Skin(Gdx.files.internal("ui/uiskin.json"));
         stage = new Stage(viewport);
@@ -29,6 +30,8 @@ public class AppScreen implements Screen {
         root.setFillParent(true);
         root.add(new Label("Hello World", skin));
         stage.addActor(root);
+        DatabaseTest test = new DatabaseTest();
+
     }
 
     @Override

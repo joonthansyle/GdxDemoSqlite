@@ -1,3 +1,4 @@
+*.db
 ## Gradle:
 .gradle/
 gradle-app.setting
