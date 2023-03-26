@@ -21,12 +21,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
-import com.galaxy.red.hat.common.gdx.sqlite.main.*;
-//import com.badlogic.gdx.sqlite.main.*;
-//import com.badlogic.gdx.sql.Database;
-//import com.badlogic.gdx.sql.DatabaseCursor;
-//import com.badlogic.gdx.sql.DatabaseManager;
-//import com.badlogic.gdx.sql.SQLiteGdxException;
+
+import com.badlogic.gdx.sql.Database;
+import com.badlogic.gdx.sql.DatabaseCursor;
+import com.badlogic.gdx.sql.DatabaseManager;
+import com.badlogic.gdx.sql.SQLiteGdxException;
+import com.badlogic.gdx.sql.builder.win.SelectBuilder;
+
 
 /**  */
 public class AndroidDatabaseManager implements DatabaseManager {
@@ -108,7 +109,18 @@ public class AndroidDatabaseManager implements DatabaseManager {
 			}
 		}
 
-	}
+        @Override
+        public DatabaseCursor getCursor(SelectBuilder<?> builder) throws SQLiteGdxException {
+            return null;
+        }
+
+        @Override
+        public DatabaseCursor getCursor(DatabaseCursor cursor, SelectBuilder<?> builder) throws SQLiteGdxException {
+            return null;
+        }
+
+
+    }
 
 	public AndroidDatabaseManager () {
 		AndroidApplication app = (AndroidApplication)Gdx.app;

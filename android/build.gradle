@@ -65,6 +65,7 @@ configurations { natives }
 dependencies {
   coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
   implementation "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
+  implementation 'org.ow2.asm:asm-tree:9.4'
   implementation project(':core')
 
   natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"

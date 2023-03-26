@@ -1,10 +1,13 @@
 package com.galaxy.red.hat.GdxDemoSqlite;
 
 import com.badlogic.gdx.Gdx;
-import com.galaxy.red.hat.common.gdx.sqlite.main.Database;
-import com.galaxy.red.hat.common.gdx.sqlite.main.DatabaseCursor;
-import com.galaxy.red.hat.common.gdx.sqlite.main.DatabaseFactory;
-import com.galaxy.red.hat.common.gdx.sqlite.main.SQLiteGdxException;
+import com.badlogic.gdx.sql.Database;
+import com.badlogic.gdx.sql.builder.win.SelectBuilder;
+
+
+import com.badlogic.gdx.sql.DatabaseCursor;
+import com.badlogic.gdx.sql.DatabaseFactory;
+import com.badlogic.gdx.sql.SQLiteGdxException;
 
 public class DatabaseTest {
     Database dbHandler;
@@ -53,12 +56,59 @@ public class DatabaseTest {
             Gdx.app.log("FromDb", String.valueOf(cursor.getString(1)));
         }
 
+        System.out.println("Using GETMANY");
+
+//        List<Result> results = null;
+//        try {
+//            SelectBuilder<Result> builder = new SelectBuilder<>(
+//                rs -> new Result(rs.getInt(CommentColumns.ID.getName()), rs.getString(CommentColumns.COMMENT.getName()))
+//            )
+//                .table("comments")
+//                .select(CommentColumns.ID)
+//                .select(CommentColumns.COMMENT);
+//            results = dbHandler.getMany(builder);
+//            for (Result r : results){
+//                System.out.print("ID->"+r.index);
+//                System.out.println("COMMEND->"+r.comment);
+//            }
+//            System.out.println(results.size());
+//        } catch (SQLiteGdxException e) {
+//            throw new RuntimeException(e);
+//        }
+        System.out.println("Using GETCURSOR");
+
+        try {
+            SelectBuilder<Result> builder = new SelectBuilder<>(
+                rs -> new Result(rs.getInt(CommentColumns.ID.getName()), rs.getString(CommentColumns.COMMENT.getName()))
+            )
+                .table("comments")
+                .select(CommentColumns.COMMENT)
+                .where(CommentColumns.ID, 24);
+
+            cursor = dbHandler.getCursor(builder);
+        } catch (SQLiteGdxException e) {
+            e.printStackTrace();
+        }
+        while (cursor.next()) {
+            Gdx.app.log("CURSOR->", String.valueOf(cursor.getString(0)));
+        }
         try {
             dbHandler.closeDatabase();
         } catch (SQLiteGdxException e) {
             e.printStackTrace();
         }
+
         dbHandler = null;
         Gdx.app.log("DatabaseTest", "dispose");
+    }
+
+    static class Result {
+
+        private final int index;
+        private final String comment;
+        public Result(final int in, final String comment) {
+            this.index = in;
+            this.comment = comment;
+        }
     }
 }
