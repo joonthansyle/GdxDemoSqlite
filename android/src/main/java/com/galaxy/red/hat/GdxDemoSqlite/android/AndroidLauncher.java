@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.badlogic.gdx.sqlite.android.AndroidDatabaseManager;
 import com.galaxy.red.hat.GdxDemoSqlite.AppMain;
 
 /** Launches the Android application. */

@@ -1,12 +1,15 @@
 package com.galaxy.red.hat.GdxDemoSqlite;
 
+import com.badlogic.gdx.sql.SqliteDataTypes;
 import com.badlogic.gdx.sql.builder.Column;
 
 import java.sql.Types;
 
 public enum CommentColumns implements Column {
-    ID("_id", Types.INTEGER),
-    COMMENT("comment", Types.VARCHAR);
+//    ID("_id", Types.INTEGER),
+//    COMMENT("comment", Types.VARCHAR);
+    ID("_id", SqliteDataTypes.LONG),
+    COMMENT("comment", SqliteDataTypes.STRING);
 
     private final String name;
     private final int type;

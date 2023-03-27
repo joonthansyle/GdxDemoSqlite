@@ -26,6 +26,7 @@ import com.badlogic.gdx.sql.Database;
 import com.badlogic.gdx.sql.DatabaseCursor;
 import com.badlogic.gdx.sql.DatabaseManager;
 import com.badlogic.gdx.sql.SQLiteGdxException;
+import com.badlogic.gdx.sql.builder.SqlBuilderSelect;
 import com.badlogic.gdx.sql.builder.win.SelectBuilder;
 
 
@@ -62,6 +63,7 @@ public class AndroidDatabaseManager implements DatabaseManager {
 		public void openOrCreateDatabase () throws SQLiteGdxException {
 			try {
 				database = helper.getWritableDatabase();
+
 			} catch (SQLiteException e) {
 				throw new SQLiteGdxException(e);
 			}
@@ -116,6 +118,16 @@ public class AndroidDatabaseManager implements DatabaseManager {
 
         @Override
         public DatabaseCursor getCursor(DatabaseCursor cursor, SelectBuilder<?> builder) throws SQLiteGdxException {
+            return null;
+        }
+
+        @Override
+        public DatabaseCursor getCursor(SqlBuilderSelect<?> builder) throws SQLiteGdxException {
+            return builder.getCursor(database);
+        }
+
+        @Override
+        public DatabaseCursor getCursor(DatabaseCursor cursor, SqlBuilderSelect<?> builder) throws SQLiteGdxException {
             return null;
         }
 
