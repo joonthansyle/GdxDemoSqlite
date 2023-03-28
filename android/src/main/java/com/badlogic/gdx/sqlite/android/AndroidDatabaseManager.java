@@ -26,8 +26,11 @@ import com.badlogic.gdx.sql.Database;
 import com.badlogic.gdx.sql.DatabaseCursor;
 import com.badlogic.gdx.sql.DatabaseManager;
 import com.badlogic.gdx.sql.SQLiteGdxException;
-import com.badlogic.gdx.sql.builder.SqlBuilderSelect;
-import com.badlogic.gdx.sql.builder.win.SelectBuilder;
+import com.badlogic.gdx.sql.builder.*;
+
+import java.util.OptionalInt;
+import java.util.OptionalLong;
+//import com.badlogic.gdx.sql.builder.win.SelectBuilder;
 
 
 /**  */
@@ -111,15 +114,15 @@ public class AndroidDatabaseManager implements DatabaseManager {
 			}
 		}
 
-        @Override
-        public DatabaseCursor getCursor(SelectBuilder<?> builder) throws SQLiteGdxException {
-            return null;
-        }
-
-        @Override
-        public DatabaseCursor getCursor(DatabaseCursor cursor, SelectBuilder<?> builder) throws SQLiteGdxException {
-            return null;
-        }
+//        @Override
+//        public DatabaseCursor getCursor(SelectBuilder<?> builder) throws SQLiteGdxException {
+//            return null;
+//        }
+//
+//        @Override
+//        public DatabaseCursor getCursor(DatabaseCursor cursor, SelectBuilder<?> builder) throws SQLiteGdxException {
+//            return null;
+//        }
 
         @Override
         public DatabaseCursor getCursor(SqlBuilderSelect<?> builder) throws SQLiteGdxException {
@@ -128,7 +131,22 @@ public class AndroidDatabaseManager implements DatabaseManager {
 
         @Override
         public DatabaseCursor getCursor(DatabaseCursor cursor, SqlBuilderSelect<?> builder) throws SQLiteGdxException {
-            return null;
+            return builder.getCursor(cursor, database);
+        }
+
+        @Override
+        public OptionalLong insert(SqlBuilderInsert builder) throws SQLiteGdxException {
+            return builder.insert(database);
+        }
+
+        @Override
+        public OptionalInt delete(SqlBuilderDelete builder) throws SQLiteGdxException, java.sql.SQLException {
+            return builder.delete(database);
+        }
+
+        @Override
+        public OptionalInt update(SqlBuilderUpdate builder) throws SQLiteGdxException, java.sql.SQLException {
+            return builder.update(database);
         }
 
 

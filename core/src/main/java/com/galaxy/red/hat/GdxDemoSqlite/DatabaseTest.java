@@ -2,8 +2,7 @@ package com.galaxy.red.hat.GdxDemoSqlite;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.sql.Database;
-import com.badlogic.gdx.sql.builder.SqlBuilderSelect;
-import com.badlogic.gdx.sql.builder.SqlBuilderSelectFactory;
+import com.badlogic.gdx.sql.builder.*;
 
 //import com.badlogic.gdx.sql.builder.win.BuildSqlSelect;
 
@@ -16,6 +15,8 @@ import com.badlogic.gdx.sql.SQLiteGdxException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 public class DatabaseTest {
     Database dbHandler;
@@ -103,9 +104,7 @@ public class DatabaseTest {
 //            Gdx.app.log("CURSOR->", String.valueOf(cursor.getString(0)));
 //        }
 
-        System.out.println("Using ABSTRACT");
-
-
+        System.out.println("Using ABSTRACT: SqlBuilderSelect");
 
         try {
             SqlBuilderSelect<Result> builder = new SqlBuilderSelectFactory<Result>().builderSelect(
@@ -126,12 +125,6 @@ public class DatabaseTest {
 
         try {
             SqlBuilderSelectFactory<Result> factory = new SqlBuilderSelectFactory<>();
-//            factory.builderSelect(
-//                    rs -> new Result(rs.getInt(CommentColumns.ID.getName()), rs.getString(CommentColumns.COMMENT.getName()))
-//                                 )
-//                .table("comments")
-//                .select(CommentColumns.COMMENT)
-//                .where(CommentColumns.ID, 50);
 
             cursor = dbHandler.getCursor(
                 factory.builderSelect(
@@ -139,16 +132,69 @@ public class DatabaseTest {
                                      )
                     .table("comments")
                     .select(CommentColumns.COMMENT)
-                    .where(CommentColumns.ID, 1)
                                         );
+//                    .where(CommentColumns.ID, 1)
+
         } catch (SQLiteGdxException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException | InvocationTargetException | NoSuchMethodException | InstantiationException |
                  IllegalAccessException | SQLException e) {
             throw new RuntimeException(e);
         }
+        int indexing = 0;
         while (cursor.next()) {
-            Gdx.app.log("CURSOR->", String.valueOf(cursor.getString(0)));
+            Gdx.app.log("CURSOR->", (indexing++)+":"+cursor.getString(0));
+        }
+
+        System.out.println("Using ABSTRACT: SqlBuilderInsert");
+
+        try {
+            SqlBuilderInsertFactory insertFactory = new SqlBuilderInsertFactory();
+            OptionalLong optionalLong = dbHandler.insert(
+                insertFactory.builderInsert()
+                    .table("comments")
+                    .value(CommentColumns.COMMENT, "new comment 202320329"));
+            System.out.println("TOTAL ITEMS IN THE TABLE: "+optionalLong);
+        } catch (SQLiteGdxException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException | InvocationTargetException | NoSuchMethodException | InstantiationException |
+                 IllegalAccessException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("Using ABSTRACT: SqlBuilderDelete");
+
+        try {
+            SqlBuilderDeleteFactory deleteFactory = new SqlBuilderDeleteFactory();
+            OptionalInt optionalInt = dbHandler.delete(
+                deleteFactory.builderDelete()
+                    .table("comments")
+                    .where(CommentColumns.COMMENT,"This is a test comment 1")
+                    .where(CommentColumns.ID, 1));
+            System.out.println("DELETED: "+optionalInt);
+        } catch (SQLiteGdxException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException | InvocationTargetException | NoSuchMethodException | InstantiationException |
+                 IllegalAccessException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("Using ABSTRACT: SqlBuilderUpdate");
+
+        try {
+            SqlBuilderUpdateFactory updateFactory = new SqlBuilderUpdateFactory();
+            OptionalInt optionalInt = dbHandler.update(
+                updateFactory.builderUpdate()
+                    .table("comments")
+                    .where(CommentColumns.COMMENT,"This is a test comment")
+                    .value(CommentColumns.COMMENT, "This is a test comment updated"));
+
+            System.out.println("UPDATED: "+optionalInt);
+        } catch (SQLiteGdxException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException | InvocationTargetException | NoSuchMethodException | InstantiationException |
+                 IllegalAccessException | SQLException e) {
+            throw new RuntimeException(e);
         }
 
         try {
