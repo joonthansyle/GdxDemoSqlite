@@ -21,7 +21,6 @@ import com.badlogic.gdx.sql.builder.Column;
 import com.badlogic.gdx.sql.builder.SqlBuilderUpdate;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.OptionalInt;
@@ -43,28 +42,6 @@ public class BuildSqlUpdate extends SqlBuilderUpdate {
     @Override
     public OptionalInt update(Connection connection) throws SQLException, SQLiteGdxException {
         throw new SQLiteGdxException(EQ03);
-//        if (table == null || values.isEmpty()) {
-//            throw new SQLiteGdxException(EQ02);
-//        }
-//        final PreparedStatement statement = connection.prepareStatement(createStatement());
-//        int index = 1;
-//        for (Map.Entry<Column, Object> p : values.entrySet()) {
-//            if (p.getValue() == null) {
-//                statement.setNull(index++, p.getKey().getType());
-//            } else {
-//                statement.setObject(index++, p.getValue(), p.getKey().getType());
-//            }
-//        }
-//        for (Map.Entry<Column, Object> p : clauses.entrySet()) {
-//            if (p != null) {
-//                statement.setObject(index++, p.getValue(), p.getKey().getType());
-//            }
-//        }
-//        final int rows = statement.executeUpdate();
-//        if (rows > 0) {
-//            return OptionalInt.of(rows);
-//        }
-//        return OptionalInt.empty();
     }
 
     /** Runs on Android */
