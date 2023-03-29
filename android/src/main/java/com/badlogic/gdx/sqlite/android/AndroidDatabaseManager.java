@@ -30,10 +30,7 @@ import com.badlogic.gdx.sql.builder.*;
 
 import java.util.OptionalInt;
 import java.util.OptionalLong;
-//import com.badlogic.gdx.sql.builder.win.SelectBuilder;
 
-
-/**  */
 public class AndroidDatabaseManager implements DatabaseManager {
 
 	private Context context;
@@ -82,6 +79,7 @@ public class AndroidDatabaseManager implements DatabaseManager {
 		}
 
 		@Override
+        @Deprecated
 		public void execSQL (String sql) throws SQLiteGdxException {
 			try {
 				database.execSQL(sql);
@@ -91,6 +89,7 @@ public class AndroidDatabaseManager implements DatabaseManager {
 		}
 
 		@Override
+        @Deprecated
 		public DatabaseCursor rawQuery(String sql) throws SQLiteGdxException {
 			AndroidCursor aCursor = new AndroidCursor();
 			try {
@@ -113,16 +112,6 @@ public class AndroidDatabaseManager implements DatabaseManager {
 				throw new SQLiteGdxException(e);
 			}
 		}
-
-//        @Override
-//        public DatabaseCursor getCursor(SelectBuilder<?> builder) throws SQLiteGdxException {
-//            return null;
-//        }
-//
-//        @Override
-//        public DatabaseCursor getCursor(DatabaseCursor cursor, SelectBuilder<?> builder) throws SQLiteGdxException {
-//            return null;
-//        }
 
         @Override
         public DatabaseCursor getCursor(SqlBuilderSelect<?> builder) throws SQLiteGdxException {

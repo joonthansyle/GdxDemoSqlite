@@ -10,7 +10,6 @@
  * INFO, ERRORS AND WARNINGS:
  * EQ01, EQ03, EQ04
  **********************************************************************************************************************</p>*/
-
 package com.badlogic.gdx.sql.builder.android;
 
 import android.database.Cursor;
@@ -37,19 +36,12 @@ public class BuildSqlSelect<T> extends SqlBuilderSelect<T> {
     private final String EQ01 = "Unknown Sqlite DataType, use SqliteDataTypes";
     private final String EQ03 = "Operating System not Supported";
     private final String EQ04 = "Database is not an instance of SQLiteDatabase";
-
     public BuildSqlSelect(ResultMapper<T> resultMapper) {
         super(resultMapper);
     }
-
     public BuildSqlSelect(Class<T> tClass) {
         super(tClass);
     }
-
-//    @Override
-//    public SqlBuilderSelect<ResultSet> resultSetSelector() {
-//        return new BuildSqlSelect<>(rs -> rs);
-//    }
 
     @Override
     protected Object preparedStatementAndroid(Object androidDatabase) throws SQLiteGdxException {

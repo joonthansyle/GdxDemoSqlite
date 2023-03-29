@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.sqlite.android;
 
 import android.database.Cursor;
@@ -7,15 +6,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.sql.DatabaseCursor;
 import com.badlogic.gdx.sql.DatabaseFactory;
 import com.badlogic.gdx.sql.SQLiteGdxRuntimeException;
-//import com.badlogic.gdx.sqlite.main.*;
-//import com.badlogic.gdx.sql.DatabaseCursor;
-//import com.badlogic.gdx.sql.DatabaseFactory;
-//import com.badlogic.gdx.sql.SQLiteGdxRuntimeException;
-
-//import com.badlogic.gdx.Gdx;
-//import com.badlogic.gdx.sql.DatabaseCursor;
-//import com.badlogic.gdx.sql.DatabaseFactory;
-//import com.badlogic.gdx.sql.SQLiteGdxRuntimeException;
 
 /** @author M Rafay Aleem */
 public class AndroidCursor implements DatabaseCursor {

@@ -10,7 +10,6 @@
  * INFO, ERRORS AND WARNINGS:
  * EQ02, EQ03
  **********************************************************************************************************************</p>*/
-
 package com.badlogic.gdx.sql.builder.android;
 
 import android.database.sqlite.SQLiteDatabase;
