@@ -8,9 +8,9 @@
  *           modified              @author...
  * =====================================================================================================================
  * INFO, ERRORS AND WARNINGS:
- * EQ01, EQ03, EQ04
+ * E501, E503, E504
  **********************************************************************************************************************</p>*/
-package com.badlogic.gdx.sql.builder.android;
+package com.badlogic.gdx.sqlite.android.builder;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -33,9 +33,9 @@ public class BuildSqlSelect<T> extends SqlBuilderSelect<T> {
     private String androidSql;
 
     /* ERRORS */
-    private final String EQ01 = "Unknown Sqlite DataType, use SqliteDataTypes";
-    private final String EQ03 = "Operating System not Supported";
-    private final String EQ04 = "Database is not an instance of SQLiteDatabase";
+    private final String E501 = "Unknown Sqlite DataType, use SqliteDataTypes";
+    private final String E503 = "Operating System not Supported";
+    private final String E504 = "Database is not an instance of SQLiteDatabase";
     public BuildSqlSelect(ResultMapper<T> resultMapper) {
         super(resultMapper);
     }
@@ -45,7 +45,7 @@ public class BuildSqlSelect<T> extends SqlBuilderSelect<T> {
 
     @Override
     protected Object preparedStatementAndroid(Object androidDatabase) throws SQLiteGdxException {
-        if(!(androidDatabase instanceof SQLiteDatabase)) throw new SQLiteGdxException(EQ04);
+        if(!(androidDatabase instanceof SQLiteDatabase)) throw new SQLiteGdxException(E504);
         db  = (SQLiteDatabase) androidDatabase;
         androidSql = createStatement();
         SQLiteStatement aStatement = db.compileStatement(androidSql);
@@ -71,7 +71,7 @@ public class BuildSqlSelect<T> extends SqlBuilderSelect<T> {
                         aStatement.bindNull(index++);
                         break;
                     default:
-                        Gdx.app.error(TAG, EQ01);
+                        Gdx.app.error(TAG, E501);
                         break;
                 }
 
@@ -85,19 +85,19 @@ public class BuildSqlSelect<T> extends SqlBuilderSelect<T> {
     /* Connection not Supported in Android */
     @Override
     protected Object preparedStatementWin(Connection connection) throws SQLiteGdxException {
-        throw new SQLiteGdxException(EQ03);
+        throw new SQLiteGdxException(E503);
     }
 
     /* Connection not Supported in Android */
     @Override
     public DatabaseCursor getCursor(Connection connection) throws SQLiteGdxException {
-        throw new SQLiteGdxException(EQ03);
+        throw new SQLiteGdxException(E503);
     }
 
     /* Connection not Supported in Android */
     @Override
     public DatabaseCursor getCursor(DatabaseCursor cursor, Connection connection) throws SQLiteGdxException {
-        throw new SQLiteGdxException(EQ03);
+        throw new SQLiteGdxException(E503);
     }
 
     @Override

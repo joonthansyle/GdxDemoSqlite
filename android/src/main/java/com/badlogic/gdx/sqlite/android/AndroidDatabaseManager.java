@@ -11,7 +11,6 @@
  * INFO, ERRORS AND WARNINGS:
  *
  **********************************************************************************************************************</p>*/
-
 package com.badlogic.gdx.sqlite.android;
 
 import android.content.Context;
@@ -63,7 +62,6 @@ public class AndroidDatabaseManager implements DatabaseManager {
 		public void openOrCreateDatabase () throws SQLiteGdxException {
 			try {
 				database = helper.getWritableDatabase();
-
 			} catch (SQLiteException e) {
 				throw new SQLiteGdxException(e);
 			}
@@ -137,8 +135,6 @@ public class AndroidDatabaseManager implements DatabaseManager {
         public OptionalInt update(SqlBuilderUpdate builder) throws SQLiteGdxException, java.sql.SQLException {
             return builder.update(database);
         }
-
-
     }
 
 	public AndroidDatabaseManager () {
