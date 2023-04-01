@@ -25,9 +25,13 @@ import com.badlogic.gdx.sql.builder.SqlBuilderSelect;
 import com.badlogic.gdx.sqlite.android.AndroidCursor;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
-public class BuildSqlSelect<T> extends SqlBuilderSelect<T> {
+public class BuildSqlSelect extends SqlBuilderSelect {
     private static final String TAG = BuildSqlSelect.class.getCanonicalName();
     private SQLiteDatabase db;
     private String androidSql;
@@ -36,11 +40,8 @@ public class BuildSqlSelect<T> extends SqlBuilderSelect<T> {
     private final String E501 = "Unknown Sqlite DataType, use SqliteDataTypes";
     private final String E503 = "Operating System not Supported";
     private final String E504 = "Database is not an instance of SQLiteDatabase";
-    public BuildSqlSelect(ResultMapper<T> resultMapper) {
+    public BuildSqlSelect(ResultMapper resultMapper) {
         super(resultMapper);
-    }
-    public BuildSqlSelect(Class<T> tClass) {
-        super(tClass);
     }
 
     @Override
@@ -118,5 +119,4 @@ public class BuildSqlSelect<T> extends SqlBuilderSelect<T> {
         aCursor.setNativeCursor(tmp);
         return aCursor;
     }
-
 }

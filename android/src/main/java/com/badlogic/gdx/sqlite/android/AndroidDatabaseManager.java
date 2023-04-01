@@ -112,12 +112,12 @@ public class AndroidDatabaseManager implements DatabaseManager {
 		}
 
         @Override
-        public DatabaseCursor getCursor(SqlBuilderSelect<?> builder) throws SQLiteGdxException {
+        public DatabaseCursor getCursor(SqlBuilderSelect builder) throws SQLiteGdxException {
             return builder.getCursor(database);
         }
 
         @Override
-        public DatabaseCursor getCursor(DatabaseCursor cursor, SqlBuilderSelect<?> builder) throws SQLiteGdxException {
+        public DatabaseCursor getCursor(DatabaseCursor cursor, SqlBuilderSelect builder) throws SQLiteGdxException {
             return builder.getCursor(cursor, database);
         }
 

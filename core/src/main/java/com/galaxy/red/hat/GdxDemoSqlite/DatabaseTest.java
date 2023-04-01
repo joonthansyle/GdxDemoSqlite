@@ -107,7 +107,7 @@ public class DatabaseTest {
         System.out.println("Using ABSTRACT: SqlBuilderSelect");
 
         try {
-            SqlBuilderSelect<Result> builder = new SqlBuilderSelectFactory<Result>().builderSelect(
+            SqlBuilderSelect builder = new SqlBuilderSelectFactory().builderSelect(
                 rs -> new Result(rs.getInt(CommentColumns.ID.getName()), rs.getString(CommentColumns.COMMENT.getName()))
             )
                 .table("comments")
@@ -124,7 +124,7 @@ public class DatabaseTest {
         }
 
         try {
-            SqlBuilderSelectFactory<Result> factory = new SqlBuilderSelectFactory<>();
+            SqlBuilderSelectFactory factory = new SqlBuilderSelectFactory();
 
             cursor = dbHandler.getCursor(
                 factory.builderSelect(
