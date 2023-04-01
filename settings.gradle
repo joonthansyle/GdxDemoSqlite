@@ -1,3 +1,6 @@
 include 'core', 'android', 'lwjgl3'
 
-include 'common-gdx-sqlite-win'
+
+include 'common-gdx-api-sqlite-android'
+include 'common-gdx-api-sqlite-desktop'
+include 'common-gdx-api-sqlite'

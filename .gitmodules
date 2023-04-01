@@ -1,3 +1,9 @@
-[submodule "common-gdx-sqlite-win"]
-	path = common-gdx-sqlite-win
-	url = https://github.com/joonthansyle/common-gdx-sqlite-win.git
+[submodule "common-gdx-api-sqlite-android"]
+	path = common-gdx-api-sqlite-android
+	url = https://github.com/joonthansyle/common-gdx-api-sqlite-android.git
+[submodule "common-gdx-api-sqlite-desktop"]
+	path = common-gdx-api-sqlite-desktop
+	url = https://github.com/joonthansyle/common-gdx-api-sqlite-desktop.git
+[submodule "common-gdx-api-sqlite"]
+	path = common-gdx-api-sqlite
+	url = https://github.com/joonthansyle/common-gdx-api-sqlite.git
